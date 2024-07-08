@@ -1,3 +1,6 @@
 #virtual environmentT
 TheThird/
 .env
+.cache/
+smith_langchain.png
+.DS_Store
