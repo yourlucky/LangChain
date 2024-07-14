@@ -4,3 +4,6 @@ TheThird/
 .cache/
 smith_langchain.png
 .DS_Store
+.streamlit
+
+cheat_sheet.txt
