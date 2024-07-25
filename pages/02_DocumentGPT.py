@@ -30,6 +30,7 @@ class ChatCallbackHandler(BaseCallbackHandler):
 
 llm = ChatOpenAI(
     temperature=0.1,
+    model="gpt-4o-mini",
     streaming=True,
     callbacks=[
         ChatCallbackHandler(),
@@ -122,6 +123,9 @@ if file:
     message = st.chat_input("Ask anything about your file...")
     if message:
         send_message(message, "human")
+        #docs=retriever.invoke(message)
+        #docs=" \n\n".join(document.page_content for document in docs)
+        #prompt = ChatPromptTemplate.from_messages(context=docs, question=message)
         chain = (
             {
                 "context": retriever | RunnableLambda(format_docs),
