@@ -9,6 +9,11 @@ from langchain.chat_models import ChatOpenAI
 from langchain.callbacks.base import BaseCallbackHandler
 import streamlit as st
 
+from login_f import check_password
+
+if not check_password():
+    st.stop()
+
 st.set_page_config(
     page_title="DocumentGPT",
     page_icon="📃",

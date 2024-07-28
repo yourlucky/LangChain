@@ -7,7 +7,10 @@ from langchain.callbacks import StreamingStdOutCallbackHandler
 import streamlit as st
 from langchain.retrievers import WikipediaRetriever
 from langchain.schema import BaseOutputParser
+from login_f import check_password
 
+if not check_password():
+    st.stop()
 
 class JsonOutputParser(BaseOutputParser):
     def parse(self, text):

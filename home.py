@@ -1,9 +1,15 @@
 import streamlit as st
+from login_f import check_password
+
+if not check_password():
+    st.stop()
 
 st.set_page_config(
     page_title="FullstackGPT Home",
     page_icon="🤖",
 )
+
+
 
 st.markdown('# Hey There! 👋')
 st.markdown(
