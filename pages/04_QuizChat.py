@@ -25,7 +25,7 @@ st.title("Quiz GPT")
 
 llm = ChatOpenAI(
     temperature=0.1,
-    model="gpt-3.5-turbo-1106",
+    model="gpt-4o",
     #True면 중간 진행상황들을 출력!
     #streaming=True,
     callbacks=[StreamingStdOutCallbackHandler()],
@@ -257,13 +257,27 @@ with st.sidebar:
 if not docs:
     st.markdown(
         """
-    Welcome to QuizGPT.
-                
-    I will make a quiz from Wikipedia articles or files you upload to test your knowledge and help you study.
-                
-    Get started by uploading a file or searching on Wikipedia in the sidebar.
+Welcome to QuizGPT! 🚀  
+
+We transform content from uploaded documents or Wikipedia into engaging quizzes.📚🎓  
+Powered by our LLM model, we output in JSON format for a streamlined functionality.  
+We believe this is the future of learning. 🌟  
+
+Get started by uploading a file or searching on Wikipedia in the sidebar. 🌐  
     """
     )
+
+    st.markdown("""
+<style>
+.custom-font {
+    font-size: 14px;  /* 폰트 크기 조절 */
+    font-weight: normal;  /* 굵기를 일반으로 설정 */
+}
+</style>
+<div class='custom-font'>
+    LLM의 출력값을 Json형태로 만들어 동작하는 함수를 만들었습니다.
+</div>
+""", unsafe_allow_html=True)
 else:
     #start = st.button("Generate Quiz")
     response = run_quiz_chain(docs, topic if topic else file.name)

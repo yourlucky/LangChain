@@ -29,8 +29,9 @@ class ChatCallbackHandler(BaseCallbackHandler):
 
 
 llm = ChatOpenAI(
-    temperature=0.1,
-    model="gpt-4o-mini",
+    temperature=0.2,
+    #model="gpt-4o-mini",
+    model='gpt-4',
     streaming=True,
     callbacks=[
         ChatCallbackHandler(),
@@ -98,17 +99,34 @@ prompt = ChatPromptTemplate.from_messages(
 )
 
 
-st.title("DocumentGPT")
+st.title("Document Chat")
 
 st.markdown(
     """
-Welcome!
-            
-Use this chatbot to ask questions to an AI about your files!
+Use this chatbot to toss any questions you have about your files straight to an AI.  
+We've tweaked it to confidently say "I don't know" if it's unsure, keeping those AI hallucinations in check.
 
-Upload your files on the sidebar.
+Why did I make this? Well, I was totally over reading endless reports and speaking for my boss. 😎  
+Let the chatbot do the heavy lifting!
+
+
+Please upload your files using the sidebar.
+
 """
 )
+
+st.markdown("""
+<style>
+.custom-font {
+    font-size: 14px;  /* 폰트 크기 조절 */
+    font-weight: normal;  /* 굵기를 일반으로 설정 */
+}
+</style>
+<div class='custom-font'>
+    보고서를 읽기 싫은 분들을 위해 만들었습니다. 할루시네이션 효과를 줄이기 위해 모른다고 할 확률을 높혔습니다.
+</div>
+""", unsafe_allow_html=True)
+
 
 with st.sidebar:
     file = st.file_uploader(

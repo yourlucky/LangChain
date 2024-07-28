@@ -11,22 +11,33 @@ from langchain.chat_models import ChatOpenAI
 from langchain.storage import LocalFileStore
 
 st.set_page_config(
-    "SiteGPT",
+    "Sit Chat",
     "🖥️",
 )
 
 
 st.markdown(
     """
-    # SiteGPT
+# Site Chat
             
-    Ask questions about the content of a website.
-            
-    Start by writing the URL of the website on the sidebar.
+We crawl the website via sitemap.xml and generate questions based on its content.  
+If available, we'll provide the source of the answer and the date it was last modified.  
+
+To get started, simply enter the website's sitemap URL in the sidebar.  
+
+example  
+https://openai.com/sitemap.xml  
+https://929theticket.com/sitemap/category/nascar.xml  
+https://www.formula1.com/content/fom-website/en/latest/all.sitemap.13.xml  
+--> f1 website can't be processed because it is too large.
+
+
+
 """
 )
 
 llm = ChatOpenAI(
+    model="gpt-4o",
     temperature=0.1,
 )
 

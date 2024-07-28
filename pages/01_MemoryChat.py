@@ -9,14 +9,17 @@ st.set_page_config(
     page_icon="🗣️",
 )
 
-st.title("Basic Chat")
+st.title("Memory Chat")
 
 st.markdown(
     """
 Welcome!
             
-Use this chatbot to ask any questions!
-This chatbot can remember conversations and provide responses based on past interactions
+Use this chatbot to ask any questions!  
+This chatbot is designed to remember past conversations and provide responses based on those interactions.  
+Please note, due to cost considerations, its memory is limited.  
+
+이전 대화를 기억하고 대화를 제공할 수 있는 챗봇입니다. 비용문제로 기억력이 짧습니다.
 
 """
 )
@@ -35,7 +38,8 @@ def paint_history():
     for message in st.session_state["messages"]:
         send_message(message["message"], message["role"], save=False)
 
-llm = ChatOpenAI(temperature=0.1)
+#llm = ChatOpenAI(temperature=0.1)
+llm = ChatOpenAI(model="gpt-4o",temperature=0.1)
 
 prompt = ChatPromptTemplate.from_messages(
     [

@@ -8,6 +8,7 @@ from langchain.prompts import ChatPromptTemplate
 import streamlit as st
 
 llm = ChatOpenAI(
+    model="gpt-4o",
     temperature=0.1,
 )
 
@@ -132,18 +133,21 @@ def load_website(url):
 
 
 st.set_page_config(
-    page_title="SiteGPT",
+    page_title="Site Chat",
     page_icon="🖥️",
 )
 
 
 st.markdown(
     """
-    # SiteGPT
+# Site Chat
             
-    Ask questions about the content of a website.
-            
-    Start by writing the URL of the website on the sidebar.
+We crawl the website via sitemap.xml and generate questions based on its content.  
+If available, we'll provide the source of the answer and the date it was last modified.  
+
+To get started, simply enter the website’s URL in the sidebar.  
+example : https://openai.com/sitemap.xml
+
 """
 )
 
