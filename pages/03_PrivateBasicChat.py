@@ -102,5 +102,21 @@ if message:
     response = chain.invoke( {"context": history,"question": message,}).content
     send_message(response, "ai")
 
-    with st.sidebar:
-        st.write(st.session_state)
+with st.sidebar:
+    model = st.selectbox("Choose Your model", ("mistral","llama2"))
+
+    if model == "mistral":
+        llm = ChatOllama(
+        model="mistral:latest",
+        temperature=0.1,
+        streaming=True,
+        callbacks=[ChatCallbackHandler(),
+        ],
+        )
+    else:
+        llm = ChatOllama(
+        model="llama2:latest",
+        temperature=0.1,
+        streaming=True,
+        callbacks=[ChatCallbackHandler(),],
+        )

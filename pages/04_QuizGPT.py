@@ -26,7 +26,8 @@ st.title("Quiz GPT")
 llm = ChatOpenAI(
     temperature=0.1,
     model="gpt-3.5-turbo-1106",
-    streaming=True,
+    #True면 중간 진행상황들을 출력!
+    #streaming=True,
     callbacks=[StreamingStdOutCallbackHandler()],
 )
 
@@ -71,6 +72,7 @@ questions_prompt = ChatPromptTemplate.from_messages(
 )
 
 questions_chain = {"context": format_docs} | questions_prompt | llm
+
 
 formatting_prompt = ChatPromptTemplate.from_messages(
     [
@@ -218,6 +220,8 @@ def split_file(file):
 @st.cache_data(show_spinner="Making Quiz...")
 def run_quiz_chain(_docs,topic):
     chain = {"context": questions_chain} | formatting_chain | output_parser
+    #question_response=question_chain.invoke(docs)
+    #formatting_response = formatting_chain({"context": question_response.content})
     response = chain.invoke(_docs)
     return response
 
